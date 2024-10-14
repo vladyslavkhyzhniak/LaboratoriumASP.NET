@@ -22,7 +22,40 @@ public class HomeController : Controller
     {
         return View();
     }
-    
+
+    public IActionResult Age(int? day, int? month, int? year)
+    {
+        if (day is null || month is null || year is null)
+        {
+            ViewBag.ErrorMessage = "Niepoprawna data urodzin";
+            return View("AgeError");
+        }
+        DateTime today = DateTime.Now.Date;
+        
+        int ageYears = today.Year - year.Value;
+        int ageMonths = today.Month - month.Value;
+        int ageDays = today.Day - day.Value;
+
+        if (ageMonths < 0 || ageDays < 0)
+        {
+            ageYears--;
+        }
+
+        if (ageMonths < 0)
+        {
+            ageMonths +=12;
+        }
+        if (ageDays < 0)
+        {
+            ageDays +=DateTime.DaysInMonth(today.Year, today.Month);
+        }
+        
+        ViewBag.AgeYear = ageYears;
+        ViewBag.AgeMonth = ageMonths;
+        ViewBag.AgeDay = ageDays;
+        return View();
+    }
+
     public IActionResult Calculator(Operator? op, double? x, double? y)
     {
       //  var op = Request.Query["op"];
