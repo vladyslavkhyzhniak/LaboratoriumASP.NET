@@ -34,8 +34,8 @@
             </td>
             <td>
                 <a class="btn btn-success" >Edycja</a>
-                <a class="btn btn-info" asp-action="Details" asp-controller="Contact" asp-route-id=@entry.Key>Szczegóły</a>
-                <a class="btn btn-danger" asp-action="Delete" asp-controller="Contact" asp-route-id=@entry.Key>Usuń</a>
+                <a class="btn btn-info" asp-action="Details" asp-controller="Contact" asp-route-id=@entry.Value.Id>Szczegóły</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-controller="Contact" asp-route-id=@entry.Value.Id>Usuń</a>
             </td>
         </tr>
     }

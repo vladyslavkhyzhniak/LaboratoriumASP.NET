@@ -70,11 +70,11 @@ public class ContactController : Controller
     public IActionResult Delete(int id)
     {
         _contacts.Remove(id);
-        return View("Index");
+        return View("Index", _contacts);
     }
 
     public IActionResult Details(int id)
     {
-        return View("Details");
+        return View(_contacts[id]);
     }
 }
