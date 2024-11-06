@@ -1,3 +1,4 @@
+using WebApp.Models;
 using WebApp.Models.Services;
 
 namespace WebApp;
@@ -12,7 +13,8 @@ public class Program
         builder.Services.AddControllersWithViews();
         
         // skojarzenie MemoryService z interfejsem i tworzenie jednej instancji
-        builder.Services.AddSingleton<IContactService, MemoryContactService>();
+        builder.Services.AddDbContext<AppDbContext>();
+        builder.Services.AddTransient<IContactService, EFContactService>();
 
         var app = builder.Build();
 
