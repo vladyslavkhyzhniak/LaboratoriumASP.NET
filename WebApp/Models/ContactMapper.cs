@@ -13,6 +13,8 @@ public class ContactMapper
             Birth = arg.Birth,
             Email = arg.Email,
             Category = arg.Category,
+            Organization = arg.Organization,
+            OrganizationId = arg.OrganizationId
         };
     }
 
@@ -27,6 +29,8 @@ public class ContactMapper
             Birth = arg.Birth,
             Email = arg.Email,
             Category = arg.Category,
+            Organization = arg.Organization,
+            OrganizationId = arg.OrganizationId
         };
     }
 }
