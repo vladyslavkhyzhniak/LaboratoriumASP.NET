@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using WebApp.Models;
+﻿using WebApp.Models;
 using WebApp.Models.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebApp.Controllers;
 
+[Authorize(Roles = "admin, user")]
 public class ContactController : Controller
 {
     private readonly IContactService _contactService;
@@ -15,6 +17,7 @@ public class ContactController : Controller
     }
 
     // Lista kontaktów
+    [AllowAnonymous]
     public IActionResult Index()
     {
         return View(_contactService.GetAll());
