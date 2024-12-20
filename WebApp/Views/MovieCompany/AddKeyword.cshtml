@@ -1,0 +1,23 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Add Keyword to Movie";
+}
+
+<h1>Add Keyword to @Model.MovieTitle</h1>
+
+<form method="post" asp-action="AddKeyword" asp-route-movieId="@Model.MovieId">
+    <div class="form-group">
+        <label for="keyword">New Keyword</label>
+        <input type="text" id="keyword" name="keyword" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Keyword</button>
+</form>
+
+<h3>Current Keywords:</h3>
+<ul>
+    @foreach (var keyword in Model.CurrentKeywords)
+    {
+        <li>@keyword</li>
+    }
+</ul>

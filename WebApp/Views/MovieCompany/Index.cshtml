@@ -1,0 +1,48 @@
+﻿@model dynamic
+
+@{
+var companies = Model.Companies;
+var currentPage = Model.CurrentPage;
+var totalPages = Model.TotalPages;
+}
+
+<h2>Lista Wytwórni Filmowych</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Nazwa Wytwórni</th>
+        <th>Liczba Filmów</th>
+        <th>Suma Budżetów</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var company in companies)
+    {
+    <tr>
+        <td>@company.CompanyName</td>
+        <td>
+            <a href="@Url.Action("Movies", "MovieCompany", new { companyId = company.CompanyId })">
+                @company.MovieCount
+            </a>
+        </td>
+        <td>@company.TotalBudget</td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+<!-- Stronicowanie -->
+<div class="pagination">
+    @if (currentPage > 1)
+    {
+    <a href="@Url.Action("Index", new { page = currentPage - 1 })">&laquo; Poprzednia</a>
+    }
+
+    <span>Strona @currentPage z @totalPages</span>
+
+    @if (currentPage < totalPages)
+    {
+    <a href="@Url.Action("Index", new { page = currentPage + 1 })">Następna &raquo;</a>
+    }
+</div>

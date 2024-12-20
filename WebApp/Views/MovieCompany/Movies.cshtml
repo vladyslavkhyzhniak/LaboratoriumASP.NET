@@ -1,0 +1,62 @@
+﻿@model dynamic
+
+@{
+ViewData["Title"] = "Lista Filmów Wytwórni";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Tytuł</th>
+        <th>Popularność</th>
+        <th>Przychody</th>
+        <th>Czas Trwania</th>
+        <th>Średnia Głosów</th>
+        <th>Liczba Głosów</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var movie in Model.Movies)
+    {
+    <tr>
+        <td>@movie.Title</td>
+        <td>@movie.Popularity</td>
+        <td>@movie.Revenue</td>
+        <td>@movie.Runtime min</td>
+        <td>@movie.VoteAverage</td>
+        <td>@movie.VoteCount</td>
+        <td>
+            <a href="@Url.Action("AddKeyword", "MovieCompany", new { movieId = movie.MovieId })" class="btn btn-success">Dodaj słowo kluczowe</a>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+<div class="pagination">
+    @if (Model.CurrentPage > 1)
+    {
+    <a href="@Url.Action("Movies", new { companyId = Model.CompanyId, page = Model.CurrentPage - 1 })">&laquo; Poprzednia</a>
+    }
+
+    <span>Strona @Model.CurrentPage z @Model.TotalPages</span>
+
+    @if (Model.CurrentPage < Model.TotalPages)
+    {
+    <a href="@Url.Action("Movies", new { companyId = Model.CompanyId, page = Model.CurrentPage + 1 })">Następna &raquo;</a>
+    }
+</div>
+<style>
+    .stars {
+        display: inline-block;
+    }
+    .fa-star {
+        font-size: 16px;
+        color: #ddd;
+    }
+    .fa-star.checked {
+        color: gold;
+    }
+</style>
