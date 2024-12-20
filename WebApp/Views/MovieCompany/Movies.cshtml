@@ -48,15 +48,3 @@ ViewData["Title"] = "Lista Filmów Wytwórni";
     <a href="@Url.Action("Movies", new { companyId = Model.CompanyId, page = Model.CurrentPage + 1 })">Następna &raquo;</a>
     }
 </div>
-<style>
-    .stars {
-        display: inline-block;
-    }
-    .fa-star {
-        font-size: 16px;
-        color: #ddd;
-    }
-    .fa-star.checked {
-        color: gold;
-    }
-</style>
