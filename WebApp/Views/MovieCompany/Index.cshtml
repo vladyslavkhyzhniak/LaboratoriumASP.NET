@@ -32,10 +32,11 @@ var totalPages = Model.TotalPages;
     </tbody>
 </table>
 
-<!-- Stronicowanie -->
+
 <div class="pagination">
     @if (currentPage > 1)
     {
+    <a href="@Url.Action("Index", new { page = 1 })">Pierwsza</a>
     <a href="@Url.Action("Index", new { page = currentPage - 1 })">&laquo; Poprzednia</a>
     }
 
@@ -44,5 +45,6 @@ var totalPages = Model.TotalPages;
     @if (currentPage < totalPages)
     {
     <a href="@Url.Action("Index", new { page = currentPage + 1 })">Następna &raquo;</a>
+    <a href="@Url.Action("Index", new { page = totalPages })">Ostatnia</a>
     }
 </div>

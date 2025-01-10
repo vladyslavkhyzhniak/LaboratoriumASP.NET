@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-ViewData["Title"] = "Lista Filmów Wytwórni";
+    ViewData["Title"] = "Lista Filmów Wytwórni";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -21,30 +21,32 @@ ViewData["Title"] = "Lista Filmów Wytwórni";
     <tbody>
     @foreach (var movie in Model.Movies)
     {
-    <tr>
-        <td>@movie.Title</td>
-        <td>@movie.Popularity</td>
-        <td>@movie.Revenue</td>
-        <td>@movie.Runtime min</td>
-        <td>@movie.VoteAverage</td>
-        <td>@movie.VoteCount</td>
-        <td>
-            <a href="@Url.Action("AddKeyword", "MovieCompany", new { movieId = movie.MovieId })" class="btn btn-success">Dodaj słowo kluczowe</a>
-        </td>
-    </tr>
+        <tr>
+            <td>@movie.Title</td>
+            <td>@movie.Popularity</td>
+            <td>@movie.Revenue</td>
+            <td>@movie.Runtime min</td>
+            <td>@movie.VoteAverage</td>
+            <td>@movie.VoteCount</td>
+            <td>
+                <a href="@Url.Action("AddKeyword", "MovieCompany", new { movieId = movie.MovieId })" class="btn btn-success">Dodaj słowo kluczowe</a>
+            </td>
+        </tr>
     }
     </tbody>
 </table>
 <div class="pagination">
     @if (Model.CurrentPage > 1)
     {
-    <a href="@Url.Action("Movies", new { companyId = Model.CompanyId, page = Model.CurrentPage - 1 })">&laquo; Poprzednia</a>
+        <a href="@Url.Action("Movies", new { companyId = Model.CompanyId, page = 1 })">&laquo; Pierwsza</a>
+        <a href="@Url.Action("Movies", new { companyId = Model.CompanyId, page = Model.CurrentPage - 1 })">&laquo; Poprzednia</a>
     }
 
     <span>Strona @Model.CurrentPage z @Model.TotalPages</span>
 
     @if (Model.CurrentPage < Model.TotalPages)
     {
-    <a href="@Url.Action("Movies", new { companyId = Model.CompanyId, page = Model.CurrentPage + 1 })">Następna &raquo;</a>
+        <a href="@Url.Action("Movies", new { companyId = Model.CompanyId, page = Model.CurrentPage + 1 })">Następna &raquo;</a>
+        <a href="@Url.Action("Movies", new { companyId = Model.CompanyId, page = Model.TotalPages })">Ostatnia &raquo;</a>
     }
 </div>
